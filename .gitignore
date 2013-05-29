@@ -16,3 +16,5 @@ tmp
 .yardoc
 _yardoc
 doc/
+application.yml
+.bash_profile
