@@ -1,23 +1,25 @@
 require 'yaml'
 
 data 	= YAML.load_file(ARGV[0])
-items = ["development", "test", "bench", "staging", "production"]
+items = Array.new
 
-data.each do |datum|
-	raise "ERROR! the key exists : #{datum[0]}" unless ENV[datum[0]].nil?
-	puts "#{datum[0]}=#{datum[1]}" if datum[1].instance_of?(String)
-end
-
-items.each do |item|
-	raise "No such an option" unless items.include? ARGV[1]
-	if item == ARGV[1]
-		data[item].each do |hash|
-			if ENV[hash[0]].nil?
-					puts "#{hash[0]}=#{hash[1]}"
-				else
-					raise "ERROR! the key exists : #{hash[0]}"
-					break;
+data.each do |dataKey, dataVal|
+	items.push(dataKey) if dataVal.instance_of?(Hash)
+	raise "ERROR! the key exists : #{dataKey}" unless ENV[dataKey].nil?
+	puts "#{dataKey}=#{dataVal}" if dataVal.instance_of?(String)
+	
+	if dataVal.instance_of?(Hash)
+		if dataKey == ARGV[1]
+			dataVal.each do |key, val|								
+				raise "ERROR! the key exists : #{key}" unless ENV[key].nil?
+				puts "#{key}=#{val}"
 			end
 		end
-	end			
-end	
+	end		 
+end
+
+raise "ERROR! No such an option : #{ARGV[1]}" unless items.include?(ARGV[1])
+
+
+
+

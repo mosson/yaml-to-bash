@@ -1,22 +1,18 @@
 yaml-to-bash
 ============
 
+## Start
 
 ```
-$ruby [readFile][environment]
+$ ruby [readFile][option]
 ```
 
-#### Environment options
+## Environment options
 
-- development
-- test
-- bench
-- staging
-- production
+Please Check your YAML file.
 
-
-#### Useage example
+## Useage example
 
 ```
-$ruby sample.yml development >> $HOME/.bash_profile
+$ ruby sample.yml development >> $HOME/.bash_profile
 ```
