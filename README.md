@@ -3,13 +3,20 @@ yaml-to-bash
 
 
 ```
-$ruby [reqdFile][writeFile][environment]
+$ruby [readFile][environment]
 ```
 
-environment options
+#### Environment options
 
 - development
 - test
 - bench
 - staging
 - production
+
+
+#### Useage example
+
+```
+$ruby sample.yml development >> $HOME/.bash_profile
+```
